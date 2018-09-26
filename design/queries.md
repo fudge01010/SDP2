@@ -1,5 +1,8 @@
 ### query list ###
 
+call `queries.php` with the operators you require in your code. either embed results as an iframe, or similar.
+
+
 query ID is compulsary. cannot be blank, will error otherwise.
 if arg is in brackets: (&sort=desc) then it's optional.
 things in [a square box] are an example of the data format the query file takes.
