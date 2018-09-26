@@ -43,6 +43,15 @@ iframe {
 	font-family: Arial;
 }
 
+table.resultstable {
+	border: solid 1px black;
+}
+
+table.resultstable td {
+	width:150px;
+	border:1px solid black;
+}
+
 /*
 
 table th {
