@@ -43,13 +43,14 @@ iframe {
 	font-family: Arial;
 }
 
+/*TABLE THINGS AND STUFF*/
 table.resultstable {
 	border: solid 1px black;
 }
 
 table.resultstable td {
-	width:150px;
-	border:1px solid black;
+	width: auto;
+	border: 1px solid black;
 }
 
 table th {
