@@ -37,7 +37,8 @@ if (!isset($_GET['qid'])) {
                 $sql = "SELECT * FROM products";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
-
+                echo "<table class=\"resultstable\">";  
+                echo "<tr><th>prod_id</th><th>name</th><th>description</th><th>cost</th></tr>";
                 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
                     echo $v;
@@ -46,7 +47,7 @@ if (!isset($_GET['qid'])) {
                 echo "Error: " . $e->getMessage();
             }
 
-            // echo "</table>";
+            echo "</table>";
             break;
         case 2:
             if (!(isset($_GET['id']))) {
