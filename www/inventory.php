@@ -8,11 +8,11 @@
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-	<button onclick="location.href='items.html'" type="button">Edit Item</button>
+	<button onclick="location.href='edititem.html'" type="button">Edit Item</button>
 
 <!-- SET UP THE TABLE -->
 <table class=\"resultstable\">
-<tr><th>prod_id</th><th>name</th><th>description</th><th>cost</th></tr>
+<tr><th>Product ID</th><th>Name</th><th>Description</th><th>Cost</th></tr>
 
 
 <?php
