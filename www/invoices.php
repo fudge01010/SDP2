@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-	<button onclick="location.href='editcustomer.html'" type="button">Edit Customers</button>
+		<button onclick="location.href='editinvoices.html'" type="button">Edit Invoices</button>
 
 <!-- SET UP THE TABLE -->
 <table class=\"resultstable\">

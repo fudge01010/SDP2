@@ -18,17 +18,23 @@
 			Please enter the details needed for the customer.
 		</p>
 		<p>
+			<label for="customerid">Customer ID:</label>
+			<input type="text" name="customerid" id="customerid" pattern="\d+" placeholder="eg. 100293" maxlength="20" required="required"/>
+		</p>
+		<p>
 			<label for="customername">Customer Name:</label>
 			<input type="text" name="customername" id="customername" pattern="^[a-zA-Z]{1,20}$" placeholder="eg. Fred" maxlength="20" required="required"/>
 		</p>
 		<p>
-			<label for="customerid">Customer ID:</label>
-			<input type="text" name="customerid" id="customerid" pattern="\d+" placeholder="eg. 100293" maxlength="20" required="required"/>
+			<label for="phonenumber">Phone Number:</label>
+			<input type="text" name="phonenumber" id="phonenumber" pattern="" placeholder="eg. 0412345678" maxlength="20" required="required"/>
+			<!-- TODO PATTERN -->
 		</p>
-		<!-- <p>
-			<label for="price">Price:</label>
-			<input type="text" name="price" id="price" pattern="(\d+\.\d{1,2})" placeholder="eg. 20.00" maxlength="20" required="required"/>
-		</p> -->
+		<p>
+			<label for="postcode">Post Code:</label>
+			<input type="text" name="postcode" id="postcode" pattern="" placeholder="eg. 3000" maxlength="4" required="required"/>
+			<!-- TODO PATTERN -->
+		</p>
 		<input type= "submit" value="Submit"/>
    		<input type= "reset" value="Reset Form"/>
   </form>
