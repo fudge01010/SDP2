@@ -18,8 +18,8 @@
 <?php
 // QUERY THE TABLE, LET THE PHP SCRIPT FILL THE TR'S AND TD's
 $html = file_get_contents('queries.php?qid=1');
-strlen($html)
-echo($html)
+echo(strlen($html));
+echo($html);
 ?>
 
 <!-- DATA ALL PRINTED, END THE TABLE NEATLY -->
