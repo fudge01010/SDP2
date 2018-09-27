@@ -69,6 +69,24 @@ if (!isset($_GET['qid'])) {
             }
             // echo "</table>";
             break;
+
+        case 3:
+            try {
+                $sql = "SELECT * FROM customers";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                //set resulting array to associative
+                // echo '<link rel="stylesheet" href="styles/style.css">';
+                $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+                    echo $v;
+                }
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            // echo "</table>";
+            break;
     }
 }
 
