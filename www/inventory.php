@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<html>
 <head>
 	<title>Inventory </title>
 	<meta charset="utf-8">
@@ -9,8 +8,13 @@
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-	<button onclick="location.href='Items.html'" type="button">Edit Item</button>
-	<table style="width:100%">
+	<button onclick="location.href='items.html'" type="button">Edit Item</button>
+<?php
+
+$html = file_get_contents('http://fudg3.xyz:1414/sdp2/www/queries.php?qid=1');
+echo($html)
+?>
+	<!-- <table style="width:100%">
 	  <tr>
 	  	<th><input type="checkbox" name="name1" width=10px/></th>
 	    <th>Name:</th>
@@ -47,7 +51,7 @@
 	    <td>41820</td> 
 	    <td>5.99</td>
 	  </tr>
-	</table>
+	</table> -->
 </body>
 
 </html>
