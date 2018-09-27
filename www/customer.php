@@ -12,7 +12,7 @@
 
 <!-- SET UP THE TABLE -->
 <table class=\"resultstable\">
-<tr><th>prod_id</th><th>name</th><th>description</th><th>cost</th></tr>
+<tr><th>Customer ID</th><th>Name</th><th>Phone Number</th><th>Post Code</th></tr>
 
 
 <?php
