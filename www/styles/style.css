@@ -52,8 +52,6 @@ table.resultstable td {
 	border:1px solid black;
 }
 
-/*
-
 table th {
 	text-align: left;
 	background-color: #87CEFA; 
@@ -72,4 +70,4 @@ table tr:hover {
 table tr:nth-child(even) {
 	background-color: gray;
 }
-*/
+
