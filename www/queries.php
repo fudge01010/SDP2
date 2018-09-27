@@ -10,8 +10,7 @@ class TableRows extends RecursiveIteratorIterator {
 
     function current() {
         return "<td>" . parent::current() . "</td>";
-        // " style='width:150px;border:1px solid black;'>" . 
-        
+        // " style='width:150px;border:1px solid black;'>" .    
     }
 
     function beginChildren() { 
@@ -33,16 +32,11 @@ if (!isset($_GET['qid'])) {
 
     switch ($_GET['qid']) {
         case 1:
-            echo "query 1.";
             try {
                 $sql = "SELECT * FROM products";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
 
-                //set resulting array to associative
-                echo '<link rel="stylesheet" href="styles/style.css">';
-                echo "<table class=\"resultstable\">";
-                echo "<tr><th>prod_id</th><th>name</th><th>description</th><th>cost</th></tr>";
                 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                 foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
                     echo $v;
@@ -50,9 +44,8 @@ if (!isset($_GET['qid'])) {
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
-
-            echo "</table>";
             break;
+        
         case 2:
             if (!(isset($_GET['id']))) {
                 echo "you need to supply a product ID to query.";
@@ -64,7 +57,7 @@ if (!isset($_GET['qid'])) {
                 $stmt->execute();
 
                 //set resulting array to associative
-                echo '<link rel="stylesheet" href="styles/style.css">';
+                // echo '<link rel="stylesheet" href="styles/style.css">';
                 echo "<table class=\"resultstable\">";
                 echo "<tr><th>prod_id</th><th>name</th><th>description</th><th>cost</th></tr>";
                 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -74,7 +67,7 @@ if (!isset($_GET['qid'])) {
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
-            echo "</table>";
+            // echo "</table>";
             break;
     }
 }
