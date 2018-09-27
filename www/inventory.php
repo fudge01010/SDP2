@@ -18,7 +18,6 @@
 <?php
 // QUERY THE TABLE, LET THE PHP SCRIPT FILL THE TR'S AND TD's
 $html = file_get_contents('http://fudg3.xyz:1414/sdp2/staging/www/queries.php?qid=1');
-echo(strlen($html));
 echo($html);
 ?>
 
