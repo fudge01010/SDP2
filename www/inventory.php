@@ -11,7 +11,7 @@
 	<button onclick="location.href='items.html'" type="button">Edit Item</button>
 <?php
 
-$html = file_get_contents('http://fudg3.xyz:1414/sdp2/www/queries.php?qid=1');
+$html = file_get_contents('queries.php?qid=1');
 echo($html)
 ?>
 	<!-- <table style="width:100%">
