@@ -1,0 +1,37 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<title>Inventory </title>
+	<meta charset="utf-8">
+	<meta name="description" content="Web development">
+	<meta name="keywords" content="HTML, CSS">
+	<meta name="author" content="group 4">
+	<link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+	<button onclick="location.href='invoices.php'">Go Back</button>
+	<form>
+	<section id="additem">
+	<h3>Invoice Details</h3>
+		<p>
+			Please enter the details needed for the inventory.
+		</p>
+		<p>
+			<label for="itemname">Name:</label>
+			<input type="text" name="itemname" id="itemname" pattern="^[a-zA-Z]{1,20}$" placeholder="eg. Bandaids" maxlength="20" required="required"/>
+		</p>
+		<p>
+			<label for="productid">Product ID:</label>
+			<input type="text" name="productid" id="productid" pattern="\d+" placeholder="eg. 100293" maxlength="20" required="required"/>
+		</p>
+		<p>
+			<label for="price">Price:</label>
+			<input type="text" name="price" id="price" pattern="(\d+\.\d{1,2})" placeholder="eg. 20.00" maxlength="20" required="required"/>
+		</p>
+		<input type= "submit" value="Submit"/>
+   		<input type= "reset" value="Reset Form"/>
+  </form>
+</body>
+
+</html>
