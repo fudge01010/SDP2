@@ -63,11 +63,13 @@ table th, table tr {
 	padding 5px;
 }
 
+table tr:nth-child(even) {
+	background-color: gray;
+}
+
 table tr:hover {
 	background-color: F3F3F3;
 }
 
-table tr:nth-child(even) {
-	background-color: gray;
-}
+
 
