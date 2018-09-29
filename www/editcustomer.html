@@ -27,13 +27,13 @@
 		</p>
 		<p>
 			<label for="phonenumber">Phone Number:</label>
-			<input type="text" name="phonenumber" id="phonenumber" pattern="" placeholder="eg. 0412345678" maxlength="20" required="required"/>
-			<!-- TODO PATTERN -->
+			<input type="text" name="phonenumber" id="phonenumber" pattern="^\d{1,10}$" placeholder="eg. 0412345678" maxlength="10" required="required"/>
+			
 		</p>
 		<p>
 			<label for="postcode">Post Code:</label>
-			<input type="text" name="postcode" id="postcode" pattern="" placeholder="eg. 3000" maxlength="4" required="required"/>
-			<!-- TODO PATTERN -->
+			<input type="text" name="postcode" id="postcode" pattern="^\d{1,4}" placeholder="eg. 3000" maxlength="4" required="required"/>
+		
 		</p>
 		<input type= "submit" value="Submit"/>
    		<input type= "reset" value="Reset Form"/>
