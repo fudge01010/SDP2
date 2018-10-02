@@ -9,6 +9,7 @@
 </head>
 <body>
 		<button onclick="location.href='editinvoices.html'" type="button">Edit Invoices</button>
+		<button onclick="location.href='addinvoices.html'" type="button">Add Invoice</button>
 
 <!-- SET UP THE TABLE -->
 <table class=\"resultstable\">
