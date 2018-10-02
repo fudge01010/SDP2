@@ -87,6 +87,21 @@ if (!isset($_GET['qid'])) {
             }
             // echo "</table>";
             break;
+			
+		case 4:
+            try {
+                $sql = "SELECT cust_id, fullname FROM products";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+                    echo $v;
+                }
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            break;
     }
 }
 
