@@ -24,7 +24,7 @@ class TableRows extends RecursiveIteratorIterator {
 
 if (!isset($_GET['qid'])) {
     echo "please supply a query ID.";
-} elseif (!($_GET['qid']>= 1 && $_GET['qid'] <= 10)) {
+} elseif (!(($_GET['qid']>= 1 && $_GET['qid'] <= 10) || $_GET['qid'] == 99) ) {
     echo "please supply a valid query ID.";
 } else {
     
@@ -86,6 +86,11 @@ if (!isset($_GET['qid'])) {
                 echo "Error: " . $e->getMessage();
             }
             // echo "</table>";
+            break;
+
+        case 99:
+            $ar = array('apple', 'orange', 'banana', 'strawberry');
+            echo json_encode($ar); // ["apple","orange","banana","strawberry"]
             break;
     }
 }
