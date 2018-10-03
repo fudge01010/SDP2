@@ -16,8 +16,10 @@
 
 <?php
 // QUERY THE TABLE, LET THE PHP SCRIPT FILL THE TR'S AND TD's
-$html = file_get_contents('http://fudg3.xyz:1414/sdp2/www/queries.php?qid=');
-echo($html);
+include('functions.php');
+$base = get_base();
+$result = file_get_contents($base . '/queries.php?qid=');
+echo($result);
 ?>
 
 <!-- DATA ALL PRINTED, END THE TABLE NEATLY -->
