@@ -1,5 +1,6 @@
 <?php
 include('conn.php');
+include_once('functions.php');
 ini_set('display_errors', true);
 
 // class to print the table stuff
@@ -24,7 +25,7 @@ class TableRows extends RecursiveIteratorIterator {
 
 if (!isset($_GET['qid'])) {
     echo "please supply a query ID.";
-} elseif (!(($_GET['qid']>= 1 && $_GET['qid'] <= 10) || $_GET['qid'] == 99) ) {
+} elseif (!(($_GET['qid']>= 1 && $_GET['qid'] <= 19) || $_GET['qid'] == 99) ) {
     echo "please supply a valid query ID.";
 } else {
     
@@ -41,6 +42,21 @@ if (!isset($_GET['qid'])) {
                 foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
                     echo $v;
                 }
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            break;
+        case 11:
+            try {
+                $sql = "SELECT * FROM products";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // print_r($result);
+                // $json = json_encode($result);
+                echo json_encode(utf8ize($result));
+                // echo $json;
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }

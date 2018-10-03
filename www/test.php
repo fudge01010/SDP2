@@ -9,7 +9,7 @@ var ar =
 // this is inside the php function
 include('functions.php');
 $base = get_base();
-$result = file_get_contents($base . '/queries.php?qid=99');
+$result = file_get_contents($base . '/queries.php?qid=11');
 echo($result);
 ?>;
 // the php function has now echoed the query as a JSON string,

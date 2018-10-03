@@ -1,7 +1,7 @@
 <?php
 // ini_set('display_errors', 1);
 
-include('connection_details.php');
+include_once('connection_details.php');
 
 
 
