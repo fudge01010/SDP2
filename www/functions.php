@@ -13,7 +13,7 @@ function curl_get_contents($url)
 
 function get_base()
 {
-	$base = "http://" . $_SERVER['SERVER_NAME'] . "/sdp2/www/";
+	$base = "http://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] . "/sdp2/www/";
 	return $base;
 }
 
