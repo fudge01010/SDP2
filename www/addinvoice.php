@@ -1,13 +1,13 @@
 <html>
 	<body>
 		<?php
+		function add($date, $paid, $customer) {
 		if (!function_exists('get_base')) {
 			include('functions.php');
 			$base = get_base();
 		}
 		try {
-			$sql="INSERT INTO invoices (date, paid, customer) VALUES ('2017-01-01','1','2')"; 
-			$base->exec($sql);
+			$sql="INSERT INTO invoices (date, paid, customer) VALUES ('$date','$paid','$customer')"; 
 			echo "New record created successfully";
 		}
 		catch(PDOException $e)
@@ -16,9 +16,7 @@
 		}
 
 		$base = null;
+		}
 		?>
-		<script>
-			console.log("SUCCESS");
-		</script>
 	</body>
 </html>

@@ -116,8 +116,8 @@
 		<script>
 		function submit() {
 		console.log('begin submission');
-		<?php
-		include('addinvoice.php');
+		<?php include('addinvoice.php');
+		add('1111-11-11','1','1');	
 		?>
 		}
 		var el = document.getElementById('submitbutton');
