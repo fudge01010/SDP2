@@ -20,6 +20,9 @@ $qid= | what it does | \<arg\> |
 12 | gets specific product (json) | `&id=[1005]`
 13 | gets all customers (json) | `nil`
 14 | gets specific customer (json) | `&id=[12]`
+15 | adds a new product | `(&id=[1055])&name=[panamax tablets]&cost=[1.49]&description=[this is a long description]`
+
+note: any page > server transactions will require javascript `encodeURI()` calls. server>page does not have this requriement.
 
 #### UPDATE: ####
 

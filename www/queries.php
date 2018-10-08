@@ -154,6 +154,32 @@ if (!isset($_GET['qid'])) {
             // echo "</table>";
             break;
 
+        case 15:
+            try {
+                //get the variables from get string, and decode.
+                $name = urldecode($_GET['name']);
+                $description = urldecode($_GET['description']);
+                $cost = urldecode($_GET['cost']);
+
+                //is the ID set? if so updating a product.
+                if (isset($_GET['id'])) {
+                    //we do have an id.
+                    $id = $_GET['id'];
+                    $sql = "INSERT INTO products (id, name, description, cost) VALUES($id, \"$name\", \"$description\", $cost) ON DUPLICATE KEY UPDATE name=\"$name\", description=\"$description\", cost=$cost";
+                } else {
+                    //we don't have an ID, new product.
+                    $sql = "INSERT INTO products (name, description, cost) VALUES (\"$name\", \"$description\", \"$cost\")";
+                }
+
+                //we have an SQL statement, execute it:
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            break;
+
         case 99:
             $ar = array('apple', 'orange', 'banana', 'strawberry');
             echo json_encode($ar); // ["apple","orange","banana","strawberry"]
