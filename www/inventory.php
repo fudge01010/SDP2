@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-	<button onclick="location.href='edititem.html'" type="button">Add/Edit Item(s)</button>
+	<button onclick="location.href='edititem.html'" type="button">Edit Item</button>
+	<button onclick="location.href='additem.php'" type="button">Add Item</button>
 
 <!-- SET UP THE TABLE -->
 <table class=\"resultstable\">
@@ -29,4 +30,3 @@ echo($result);
 </body>
 
 </html>
-
