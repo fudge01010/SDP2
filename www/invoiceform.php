@@ -37,16 +37,18 @@
 			
 			<p>
 				<label for "customer">Select Customer:</label>
-				<select id = "customer">
+				<select name = "customer" id = "customer" required = "required">
+					<option value="" selected disabled hidden>Choose here</option>
 
 					<script type="text/javascript">
 						var select = document.getElementById("customer"); 
 
 						for(var i = 0; i < ar.length; i++){
 							var element = document.createElement("option");
-							element.textContent = ar[i].fullname;
+							
 							element.name = ar[i].fullname;
 							element.id = ar[i].cust_id;
+							element.textContent = element.id + ". " + element.name;
 							select.appendChild(element);
 						}
 					</script>
@@ -60,7 +62,7 @@
 			
 			<p>
 				<label for="paid">Paid:</label>
-				<input type="checkbox" name="paid" id="paid"<br>	
+				<input type="checkbox" name= "paid" id="paid" value = "1">	
 			</p>
 			
 			<!-- Generate Product Table -->
@@ -116,46 +118,51 @@
 			<input type= "submit" value= "Submit"/>
 			<input type= "reset" value="Reset Form"/>
 		</form>
-		
 		<?php
 		include("conn.php");
 
-		echo "Records begun inserting.";
+		if (isset ($_POST["date"]) && ($_POST["customer"])) { 
+					$date = $_POST["date"];			
+					$data = explode('.',$_POST['customer']);
+					$id = $data[0];
+					$fullname = $data[1];
+					if (isset ($_POST["paid"])) {
+						$paid = 1;
+					}
+					else {
+						$paid = 0;
+					}
+					//echo "$paid";
 
-		if (isset ($_POST["inv_id"]) && ($_POST["date"]) && ($_POST["total"]) && ($_POST["paid"]) && ($_POST["customer"])){ 
-					$date = $_POST["date"];
-					//$paid = $_POST["paid"];			
-					//$customer = $_POST["customer"];
-
-			$conn = @mysql_connect($servername, $username, $password)
+			$conn = @mysqli_connect($servername, $username, $password)
 			or die('Failed to connect to server');
 
 
-			@mysql_select_db($conn, $dbname)
+			@mysqli_select_db($conn, $dbname)
 			or die('Database not available');
 
-			//$inv_id = "20";
-			//$date = "2017-08-07";
+			/*debug code:
+			$inv_id = "20";
+			$date = '2017-08-07';
 			$total = null;
 			$paid = 0;
 			$customer = 22;
-
+			*/
 
 			$sql =
-			"INSERT INTO invoices (inv_id, date, total, paid, customer)
-			VALUES ('$inv_id', '$date', '$total', '$paid', '$customer')";
+			"INSERT INTO `invoices` (`inv_id`, `date`, `total`, `paid`, `customer`) VALUES ('0', '$date', NULL, '1', '$id')";
 			if(mysqli_query($conn, $sql)){
 				echo "Records inserted successfully.";
 			} else{
 				echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 			}
 
-			echo "DEBUG CLOSE CONN";
+			//echo "DEBUG CLOSE CONN";
 
 			mysqli_close($conn);
 
 		}
-		echo "DEBUG END";
+		//echo "DEBUG END";
 
 		?>
 
