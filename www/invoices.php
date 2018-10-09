@@ -18,7 +18,7 @@
 // QUERY THE TABLE, LET THE PHP SCRIPT FILL THE TR'S AND TD's
 include('functions.php');
 $base = get_base();
-$result = file_get_contents($base . '/queries.php?qid=5');
+$result = file_get_contents($base . '/queries.php?qid=6');
 echo($result);
 ?>
 
