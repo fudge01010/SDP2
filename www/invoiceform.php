@@ -116,8 +116,37 @@
 		<script>
 		function submit() {
 		console.log('begin submission');
-		<?php include('addinvoice.php');
-		add('1111-11-11','1','1');	
+		<?php
+			include("conn.php");
+			
+			if (isset ($_POST["date"]) && ($_POST["paid"]) && ($_POST["customer"]) ){ 
+				$date = $_POST["date"];
+				$paid = $_POST["paid"];			
+				$customer = $_POST["customer"];
+					
+				$conn = @mysql_connect($servername, $username, $password)
+				or die('Failed to connect to server');
+					
+				
+				@mysql_select_db($conn, $dbname)
+				or die('Database not available');
+				
+				$date = "2017-08-07";
+				$paid = "1";
+				$customer = "22";
+						
+				$sql =
+				"INSERT INTO invoices (date, paid, customer)
+				VALUES ('$date', '$paid', '$customer')";
+				if(mysqli_query($conn, $sql)){
+					echo "Records inserted successfully.";
+				} else{
+					echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+				}
+				
+				mysqli_close($conn);
+				
+			}
 		?>
 		}
 		var el = document.getElementById('submitbutton');
