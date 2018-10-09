@@ -9,6 +9,7 @@
 </head>
 <body>
 	<button onclick="location.href='edititem.html'" type="button">Edit Item</button>
+	<button onclick="location.href='additem.php'" type="button">Add Item</button>
 
 <!-- SET UP THE TABLE -->
 <table class=\"resultstable\">
