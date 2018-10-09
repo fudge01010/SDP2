@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
 	<title>Inventory </title>
 	<meta charset="utf-8">
@@ -29,3 +29,4 @@ echo($result);
 </body>
 
 </html>
+
