@@ -1,4 +1,5 @@
 <?php
+// header('Content-type: application/json');
 include('conn.php');
 include_once('functions.php');
 ini_set('display_errors', true);
@@ -23,15 +24,19 @@ class TableRows extends RecursiveIteratorIterator {
     } 
 }
 
-if (!isset($_GET['qid'])) {
-    echo "please supply a query ID.";
-} elseif (!(($_GET['qid']>= 1 && $_GET['qid'] <= 19) || $_GET['qid'] == 99) ) {
-    echo "please supply a valid query ID.";
+if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
+    echo "please supply a query ID via post or get.";
 } else {
-    
-    //we have a valid query ID. operate on it:
+    //we have a valid query ID. extract it from post or get:
+    if (isset($_POST['qid'])) {
+        $qid = $_POST['qid'];
+        $porg = true;
+    } elseif (isset($_GET['qid'])) {
+        $qid = $_GET['qid'];
+        $porg = false;
+    }
 
-    switch ($_GET['qid']) {
+    switch ($qid) {
         case 1:
             try {
                 $sql = "SELECT * FROM products";
@@ -48,25 +53,30 @@ if (!isset($_GET['qid'])) {
             break;
         case 11:
             try {
+                header('Content-Type: application/json');
                 $sql = "SELECT * FROM products";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
 
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                echo json_encode(utf8ize($result));
-                // echo $json;
+                echo json_encode(utf8ize($result), JSON_PRETTY_PRINT);
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
             break;
         
         case 2:
-            if (!(isset($_GET['id']))) {
-                echo "you need to supply a product ID to query.";
+            if (!(isset($_GET['id'])) && !(isset($_POST['id'])) ) {
+                echo "you need to supply a product ID to query via post or get.";
                 break;
             }
             try {
-                $sql = "SELECT * FROM products WHERE prod_id =" . $_GET['id'];
+                if ($porg) {
+                    $id = $_POST['id'];
+                } else {
+                    $id = $_GET['id'];
+                }
+                $sql = "SELECT * FROM products WHERE prod_id =" . $id;
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
 
@@ -85,17 +95,23 @@ if (!isset($_GET['qid'])) {
             break;
 
         case 12:
-            if (!(isset($_GET['id']))) {
-                echo "you need to supply a product ID to query.";
+            if (!(isset($_GET['id'])) && !(isset($_POST['id'])) ) {
+                echo "you need to supply a product ID to query via post or get.";
                 break;
             }
             try {
-                $sql = "SELECT * FROM products WHERE prod_id =" . $_GET['id'];
+                if ($porg) {
+                    $id = $_POST['id'];
+                } else {
+                    $id = $_GET['id'];
+                }
+                // echo ($id);
+                $sql = "SELECT * FROM products WHERE prod_id =" . $id;
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
 
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                echo json_encode(utf8ize($result));
+                echo json_encode(utf8ize($result), JSON_PRETTY_PRINT);
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
@@ -137,12 +153,17 @@ if (!isset($_GET['qid'])) {
             break;
 
         case 14:
-            if (!(isset($_GET['id']))) {
-                echo "you need to supply a customer ID to query.";
+            if (!(isset($_GET['id'])) && !(isset($_POST['id'])) ) {
+                echo "you need to supply a product ID to query via post or get.";
                 break;
             }
             try {
-                $sql = "SELECT * FROM customers WHERE cust_id =" . $_GET['id'];
+                if ($porg) {
+                    $id = $_POST['id'];
+                } else {
+                    $id = $_GET['id'];
+                }
+                $sql = "SELECT * FROM customers WHERE cust_id =" . $id;
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
 

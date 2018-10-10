@@ -1,22 +1,38 @@
 <html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- jquery script -->
+<script>
+$(document).ready(function(){
+	// when the page has loaded and the doc is ready, this function is called
+
+	$.post("queries.php", //create a new POST request to this page
+	{
+		//this is your data you are POSTING to the query script!
+		qid: 12,
+		id: 1010//,
+		//name: "Bob Smith"
+	}, function(data, status){
+	    var result = $.parseJSON(data);
+	    	$.each(result, function(i, field){
+	    		$("div").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "<br />");
+	    		$("div").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "\n");
+	    		console.log(field);
+	    	});
+	    	// console.log(result);
+	    });
+});
+</script>
+</head>
+<body>
 <p> I am testing bags</p>
 
 <!-- THIS IS A HTML TAG TO EMBED JAVASCRIPT -->
-<script type="text/javascript">
-// This is javascript embedding a php function
-var ar =
-<?php
-// this is inside the php function
-include('functions.php');
-$base = get_base();
-$result = file_get_contents($base . '/queries.php?qid=11');
-echo($result);
-?>;
-// the php function has now echoed the query as a JSON string,
-// and the JS has parsed it into a variable.
-console.log(ar);
-</script>
+
+<div></div>
 
 
 <p>wow</p>
+</body>
 </html>
