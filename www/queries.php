@@ -28,6 +28,7 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
 } else {
     //we have a query ID. operate on it:
 
+    switch ($qid) {
     if (isset($_POST['qid'])) {
         // it's a POST req
         $porg = true;
@@ -69,7 +70,7 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
         
         case 2:
             if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
-                echo "you need to supply a product ID to query.";
+                echo "you need to supply a product ID to query via post or get.";
                 break;
             }
             if ($porg) {
@@ -96,7 +97,7 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
 
         case 12:
             if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
-                echo "you need to supply a product ID to query.";
+                echo "you need to supply a product ID to query via post or get.";
                 break;
             }
             if ($porg) {
