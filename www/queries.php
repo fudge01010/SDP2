@@ -219,6 +219,31 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
             }
             break;
 
+        case 6:
+            if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
+                echo "you need to supply a invoice ID to query.";
+                break;
+            }
+            if ($porg) {
+                //its post.
+                $id = $_POST['id'];
+            } else {
+                //its get
+                $id = $_GET['id'];
+            }
+            try {
+                $sql = "SELECT * , (SELECT COUNT(*) FROM inv_lines WHERE inv_lines.inv_id = invoices.inv_id) AS number_of_lines FROM invoices WHERE inv_id = " . $id;
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(utf8ize($result));
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            // echo "</table>";
+            break;
+
         case 99:
             $ar = array('apple', 'orange', 'banana', 'strawberry');
             echo json_encode($ar); // ["apple","orange","banana","strawberry"]

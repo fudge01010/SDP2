@@ -14,10 +14,10 @@ $(document).ready(function(){
 		id: 1010//,
 		//name: "Bob Smith"
 	}, function(data, status){
-	    var result = $.parseJSON(data);
+	    	var result = $.parseJSON(data);
 	    	$.each(result, function(i, field){
-	    		$("div").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "<br />");
-	    		$("div").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "\n");
+	    		// $("div").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "<br />");
+	    		$("#regret").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "\n");
 	    		console.log(field);
 	    	});
 	    	// console.log(result);
@@ -30,7 +30,7 @@ $(document).ready(function(){
 
 <!-- THIS IS A HTML TAG TO EMBED JAVASCRIPT -->
 
-<div></div>
+<div id="regret"></div>
 
 
 <p>wow</p>
