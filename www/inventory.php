@@ -6,25 +6,42 @@
 	<meta name="keywords" content="HTML, CSS">
 	<meta name="author" content="group 4">
 	<link rel="stylesheet" href="styles/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- jquery script -->
+	<script>
+	$(document).ready(function(){
+		// when the page has loaded and the doc is ready, this function is called
+
+		$.post("queries.php", //create a new POST request to this page
+		{
+			//this is your data you are POSTING to the query script!
+			qid: 11
+			// id: 1010//
+			//name: "Bob Smith"
+		}, function(data, status){
+		    var result = $.parseJSON(data);
+		    	$.each(result, function(i, field){
+		    		$("#resultstable").find("tbody:last").append("<tr><td>" + field.prod_id + "</td><td>" + field.name + "</td><td>" + field.description + "</td><td>" + field.cost + "</td></tr>");
+		    		console.log(field);
+		    	});
+		    	// console.log(result);
+		    });
+	});
+	</script>
 </head>
 <body>
-	<button onclick="location.href='edititem.html'" type="button">Add/Edit Item(s)</button>
+	<button onclick="location.href='additem.html'" type="button">Add Item(s) (NOT WORKING/NEEDS PAGE)</button>
+	<button onclick="location.href='edititem.html'" type="button">Edit Item(s)</button>
 
 <!-- SET UP THE TABLE -->
-<table class=\"resultstable\">
-<tr><th>Product ID</th><th>Name</th><th>Description</th><th>Cost</th></tr>
-
-
-<?php
-// QUERY THE TABLE, LET THE PHP SCRIPT FILL THE TR'S AND TD's
-include('functions.php');
-$base = get_base();
-$result = file_get_contents($base . '/queries.php?qid=1');
-echo($result);
-?>
-
-<!-- DATA ALL PRINTED, END THE TABLE NEATLY -->
-
+<table id="resultstable">
+	<thead>
+		<tr><th>Product ID</th><th>Name</th><th>Description</th><th>Cost</th></tr>
+	</thead>
+	<tbody>
+	</tbody>
+	<!-- DATA ALL PRINTED, END THE TABLE NEATLY -->
 </table>
 </body>
 

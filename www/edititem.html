@@ -1,5 +1,27 @@
 	<!DOCTYPE html>
 <html>
+<script>
+$(document).ready(function(){
+	// when the page has loaded and the doc is ready, this function is called
+
+	$.post("queries.php", //create a new POST request to this page
+	{
+		//this is your data you are POSTING to the query script!
+		qid: 12,
+		id: 1010//,
+		//name: "Bob Smith"
+	}, function(data, status){
+	    var result = $.parseJSON(data);
+	    	$.each(result, function(i, field){
+	    		$("productid").append(field.prod_id);
+	    		$("div").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "<br />");
+	    		$("div").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "<br />");
+	    		$("div").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "<br />");
+	    	});
+	    	// console.log(result);
+	    });
+});
+</script>
 <head>
 	<title>Inventory </title>
 	<meta charset="utf-8">
@@ -12,11 +34,13 @@
 <body>
 	<button onclick="location.href='inventory.php'">Go Back</button>
 	<form>
-	<section id="additem">
+	<section id="edititem">
 	<h3>Item Details</h3>
-		<p>
-			Please enter the details needed for the item.
-		</p>
+		<p>Please enter the details needed for the item.</p>
+		<p>Product ID: <span id="productid"></span></p>
+		<p>Product Name: <span id="productid"></span></p>
+		<p>Product Cost: <span id="productid"></span></p>
+<!-- 
 		<p>
 			<label for="productid">Product ID:</label>
 			<input type="text" name="productid" id="productid" pattern="\d+" placeholder="eg. 100293" maxlength="20" required="required"/>
@@ -28,7 +52,7 @@
 		<p>
 			<label for="cost">Cost:</label>
 			<input type="text" name="cost" id="cost" pattern="(\d+\.\d{1,2})" placeholder="eg. 20.00" maxlength="20" required="required"/>
-		</p>
+		</p> -->
 		<input type= "submit" value="Submit"/>
    		<input type= "reset" value="Reset Form"/>
   </form>
