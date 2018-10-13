@@ -24,8 +24,11 @@ $qid= | what it does | \<arg\> |
 
 ##### TODO Queries: #####
  | print all invoices (not invoice lines?) 
+ 
  | add a new customer
+ 
  | add a new invoice
+ 
  | print reports (based on input??)
 
 ##### Notes: #####
