@@ -15,12 +15,18 @@ $qid= | what it does | \<arg\> |
 3 | gets all customers | `nil`
 ~~4~~ | ~~get specific customer~~ | ~~`&id=[11]`~~
 5 | print invoice (and its lines) (json) | `&id=[1001]`
-6 | print just invoice details (json) | `&id=[1004]`
+6 | print just invoice (line) details (json) | `&id=[1004]`
 11 | gets all products (json) | `nil`
 12 | gets specific product (json) | `&id=[1005]`
 13 | gets all customers (json) | `nil`
 14 | gets specific customer (json) | `&id=[12]`
 15 | adds a new product | `(&id=[1055])&name=[panamax tablets]&cost=[1.49]&description=[this is a long description]`
+
+##### TODO Queries: #####
+ | print all invoices (not invoice lines?) 
+ | add a new customer
+ | add a new invoice
+ | print reports (based on input??)
 
 ##### Notes: #####
 
