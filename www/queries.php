@@ -28,7 +28,6 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
 } else {
     //we have a query ID. operate on it:
 
-    switch ($qid) {
     if (isset($_POST['qid'])) {
         // it's a POST req
         $porg = true;
