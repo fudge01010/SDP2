@@ -10,28 +10,27 @@
 
 	<!-- jquery script -->
 	<script>
-	$(document).ready(function(){
-		// when the page has loaded and the doc is ready, this function is called
-
-		$.post("queries.php", //create a new POST request to this page
-		{
-			//this is your data you are POSTING to the query script!
-			qid: 11
-			// id: 1010//
-			//name: "Bob Smith"
-		}, function(data, status){
-		    var result = $.parseJSON(data);
-		    	$.each(result, function(i, field){
-		    		$("#resultstable").find("tbody:last").append("<tr><td>" + field.prod_id + "</td><td>" + field.name + "</td><td>" + field.description + "</td><td>" + field.cost + "</td></tr>");
-		    		console.log(field);
-		    	});
-		    	// console.log(result);
-		    });
-	});
+		$(document).ready(function(){
+			// when the page has loaded and the doc is ready, this function is called
+			$.post("queries.php", //create a new POST request to this page
+			{
+				//this is your data you are POSTING to the query script!
+				qid: 11
+				// id: 1010//
+				//name: "Bob Smith"
+			}, function(data, status){
+			    var result = $.parseJSON(data);
+			    	$.each(result, function(i, field){
+			    		$("#resultstable").find("tbody:last").append("<tr><td>" + field.prod_id + "</td><td>" + field.name + "</td><td>" + field.description + "</td><td>" + field.cost + "</td></tr>");
+			    		console.log(field);
+			    	});
+			    	// console.log(result);
+			    });
+		});
 	</script>
 </head>
 <body>
-	<button onclick="location.href='additem.html'" type="button">Add Item(s) (NOT WORKING/NEEDS PAGE)</button>
+	<button onclick="location.href='additem.html'" type="button">Add Item(s)</button>
 	<button onclick="location.href='edititem.html'" type="button">Edit Item(s)</button>
 
 <!-- SET UP THE TABLE -->

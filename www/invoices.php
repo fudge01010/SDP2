@@ -18,7 +18,6 @@
 			//this is your data you are POSTING to the query script!
 			qid: 6,
 			id: 1001
-			//name: "Bob Smith"
 		}, function(data, status){
 		    var result = $.parseJSON(data);
 		    	$.each(result, function(i, field){
@@ -31,8 +30,8 @@
 	</script>
 </head>
 <body>
-		<button onclick="location.href='addinvoices.html'" type="button">Add Invoices (NOT WORKING/NEEDS PAGE)</button>
-		<button onclick="location.href='editinvoices.html'" type="button">Edit Invoices</button>
+		<button onclick="location.href='addinvoices.html'" type="button">Add Invoice</button>
+		<button onclick="location.href='editinvoices.html'" type="button">Edit Invoice</button>
 
 <!-- SET UP THE TABLE -->
 <table id="resultstable">

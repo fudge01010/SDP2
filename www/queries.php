@@ -53,21 +53,8 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
                 echo "Error: " . $e->getMessage();
             }
             break;
-        case 11:
-            try {
-                $sql = "SELECT * FROM products";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
 
-                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                echo json_encode(utf8ize($result));
-                // echo $json;
-            } catch(PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-            break;
-        
-        case 2:
+         case 2:
             if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
                 echo "you need to supply a product ID to query via post or get.";
                 break;
@@ -93,7 +80,63 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
             }
             // echo "</table>";
             break;
+        case 3:
+            try {
+                $sql = "SELECT * FROM customers";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
 
+                //set resulting array to associative
+                // echo '<link rel="stylesheet" href="styles/style.css">';
+                $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+                    echo $v;
+                }
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            // echo "</table>";
+            break;
+
+        case 6:
+            if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
+                echo "you need to supply a invoice ID to query.";
+                break;
+            }
+            if ($porg) {
+                //its post.
+                $id = $_POST['id'];
+            } else {
+                //its get
+                $id = $_GET['id'];
+            }
+            try {
+                $sql = "SELECT * , (SELECT COUNT(*) FROM inv_lines WHERE inv_lines.inv_id = invoices.inv_id) AS number_of_lines FROM invoices WHERE inv_id = " . $id;
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(utf8ize($result));
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            // echo "</table>";
+            break;
+
+        case 11:
+            try {
+                $sql = "SELECT * FROM products";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(utf8ize($result));
+                // echo $json;
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            break;
+        
         case 12:
             if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
                 echo "you need to supply a product ID to query via post or get.";
@@ -113,24 +156,6 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
 
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode(utf8ize($result));
-            } catch(PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-            // echo "</table>";
-            break;
-
-        case 3:
-            try {
-                $sql = "SELECT * FROM customers";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-
-                //set resulting array to associative
-                // echo '<link rel="stylesheet" href="styles/style.css">';
-                $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-                    echo $v;
-                }
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
@@ -204,7 +229,7 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
                 if (isset($_GET['id'])) {
                     //we do have an id.
                     $id = $_GET['id'];
-                    $sql = "INSERT INTO products (prod_id, name, description, cost) VALUES($id, \"$name\", \"$description\", $cost) ON DUPLICATE KEY UPDATE name=\"$name\", description=\"$description\", cost=$cost";
+                    $sql = "INSERT INTO products (prod_id, name, description, cost) VALUES(\"$id\", \"$name\", \"$description\", $cost) ON DUPLICATE KEY UPDATE name=\"$name\", description=\"$description\", cost=$cost";
                 } else {
                     //we don't have an ID, new product.
                     $sql = "INSERT INTO products (name, description, cost) VALUES (\"$name\", \"$description\", \"$cost\")";
@@ -217,31 +242,6 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
-            break;
-
-        case 6:
-            if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
-                echo "you need to supply a invoice ID to query.";
-                break;
-            }
-            if ($porg) {
-                //its post.
-                $id = $_POST['id'];
-            } else {
-                //its get
-                $id = $_GET['id'];
-            }
-            try {
-                $sql = "SELECT * , (SELECT COUNT(*) FROM inv_lines WHERE inv_lines.inv_id = invoices.inv_id) AS number_of_lines FROM invoices WHERE inv_id = " . $id;
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-
-                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                echo json_encode(utf8ize($result));
-            } catch(PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-            // echo "</table>";
             break;
 
         case 99:
