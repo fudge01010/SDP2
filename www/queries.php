@@ -42,7 +42,7 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
         //in numeric order
 
         //case 5:
-        
+
         case 6:
             if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
                 echo "you need to supply a invoice ID to query.";
@@ -66,6 +66,11 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
                 echo "Error: " . $e->getMessage();
             }
             break;
+
+        case 7:
+            //print all invoices
+            break;
+
         case 11:
             // uncomment below if you need ID checking.
             // if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
@@ -167,7 +172,7 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
             }
             try {
                 //is the ID set? if so updating a product.
-                if (isset($_GET['id'])) {
+                if (isset($_GET['id']) || isset($_POST['id'])) {
                     //we do have an id.
                     $id = $_GET['id'];
                     $sql = "INSERT INTO products (prod_id, name, description, cost) VALUES('$id', '$name', '$description', '$cost') ON DUPLICATE KEY UPDATE name='$name', description='$description', cost='$cost'";

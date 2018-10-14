@@ -16,6 +16,7 @@ $qid= | what it does | \<arg\> |
 ~~4~~ | ~~get specific customer~~ | ~~`&id=[11]`~~
 5 | print invoice (and its lines) (json) *[TODO]* | `&id=[1001]`
 6 | print just invoice (line) details (json) | `&id=[1004]`
+7 | print all invoices, w/totals, paid status, etc | `nil`
 11 | gets all products (json) | `nil`
 12 | gets specific product (json) | `&id=[1005]`
 13 | gets all customers (json) | `nil`
