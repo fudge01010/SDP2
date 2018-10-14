@@ -39,65 +39,10 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
     }
 
     switch ($qid) {
-        case 1:
-            try {
-                $sql = "SELECT * FROM products";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
+        //in numeric order
 
-                $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-                    echo $v;
-                }
-            } catch(PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-            break;
-
-         case 2:
-            if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
-                echo "you need to supply a product ID to query via post or get.";
-                break;
-            }
-            if ($porg) {
-                //its post.
-                $id = $_POST['id'];
-            } else {
-                //its get
-                $id = $_GET['id'];
-            }
-            try {
-                $sql = "SELECT * FROM products WHERE prod_id =" . $id;
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-
-                $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-                    echo $v;
-                }
-            } catch(PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-            // echo "</table>";
-            break;
-        case 3:
-            try {
-                $sql = "SELECT * FROM customers";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-
-                //set resulting array to associative
-                // echo '<link rel="stylesheet" href="styles/style.css">';
-                $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-                    echo $v;
-                }
-            } catch(PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
-            // echo "</table>";
-            break;
-
+        //case 5:
+        
         case 6:
             if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
                 echo "you need to supply a invoice ID to query.";
@@ -120,23 +65,24 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
-            // echo "</table>";
             break;
-
         case 11:
+            // uncomment below if you need ID checking.
+            // if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
+            //     echo "you need to supply a product ID to query.";
+            //     break;
+            // }
             try {
                 $sql = "SELECT * FROM products";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
-
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode(utf8ize($result));
-                // echo $json;
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
             break;
-        
+
         case 12:
             if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
                 echo "you need to supply a product ID to query via post or get.";
@@ -159,7 +105,6 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
-            // echo "</table>";
             break;
 
         case 13:
@@ -168,14 +113,11 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
 
-                //set resulting array to associative
-                // echo '<link rel="stylesheet" href="styles/style.css">';
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode(utf8ize($result));
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
-            // echo "</table>";
             break;
 
         case 14:
@@ -200,7 +142,6 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
-            // echo "</table>";
             break;
 
         case 15:
@@ -229,10 +170,10 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
                 if (isset($_GET['id'])) {
                     //we do have an id.
                     $id = $_GET['id'];
-                    $sql = "INSERT INTO products (prod_id, name, description, cost) VALUES(\"$id\", \"$name\", \"$description\", $cost) ON DUPLICATE KEY UPDATE name=\"$name\", description=\"$description\", cost=$cost";
+                    $sql = "INSERT INTO products (prod_id, name, description, cost) VALUES('$id', '$name', '$description', '$cost') ON DUPLICATE KEY UPDATE name='$name', description='$description', cost='$cost'";
                 } else {
                     //we don't have an ID, new product.
-                    $sql = "INSERT INTO products (name, description, cost) VALUES (\"$name\", \"$description\", \"$cost\")";
+                    $sql = "INSERT INTO products (name, description, cost) VALUES ('$name', '$description', '$cost')";
                 }
 
                 //we have an SQL statement, execute it:

@@ -10,11 +10,11 @@ things in [a square box] are an example of the data format the query file takes.
 
 $qid= | what it does | \<arg\> |
 --- | :---: | --- 
-1 | gets all products | `nil`
-2 | gets specific product | `&id=[1005]`
-3 | gets all customers | `nil`
+~~1~~ | ~~gets all products~~ | ~~`nil`~~
+~~2~~ | ~~gets specific product~~ | ~~`&id=[1005]`~~
+~~3~~ | ~~gets all customers~~ | ~~`nil`~~
 ~~4~~ | ~~get specific customer~~ | ~~`&id=[11]`~~
-5 | print invoice (and its lines) (json) | `&id=[1001]`
+5 | print invoice (and its lines) (json) *[TODO]* | `&id=[1001]`
 6 | print just invoice (line) details (json) | `&id=[1004]`
 11 | gets all products (json) | `nil`
 12 | gets specific product (json) | `&id=[1005]`
