@@ -174,7 +174,6 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
                 //is the ID set? if so updating a product.
                 if (isset($_GET['id']) || isset($_POST['id'])) {
                     //we do have an id.
-                    $id = $_GET['id'];
                     $sql = "INSERT INTO products (prod_id, name, description, cost) VALUES('$id', '$name', '$description', '$cost') ON DUPLICATE KEY UPDATE name='$name', description='$description', cost='$cost'";
                 } else {
                     //we don't have an ID, new product.
