@@ -20,7 +20,6 @@
 		function saveItem()
 		{
 			//get vars from page
-
 			var cust_id = document.getElementById("cust_id").value;
 			var fullname = document.getElementById("fullname").value;
 			var contactno = document.getElementById("contactno").value;
@@ -28,17 +27,17 @@
 			$.post("queries.php", //create a new POST request to this page
 			{
 				//this is your data you are POSTING to the query script!
-				qid: , //TODO ---------------------------------------------- TODO needs query ID
+				qid: 18,
 				id: cust_id,
 				fullname: fullname,
 				contactno: contactno,
 				postcode: postcode
 			}, function(data, status){
-				console.log(status);
+				// console.log(status);
 			});
-			console.log("we saved item");
-			console.log(prod_id);
-			console.log(description);
+			// console.log("we saved item");
+			// console.log(prod_id);
+			// console.log(description);
 		}
 	</script>
 </head>

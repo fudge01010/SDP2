@@ -71,5 +71,9 @@ table tr:hover {
 	background-color: F3F3F3;
 }
 
+td a {
+  width: 100%;
+  display: block;
+}
 
 
