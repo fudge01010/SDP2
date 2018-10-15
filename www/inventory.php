@@ -21,8 +21,8 @@
 			}, function(data, status){
 			    var result = $.parseJSON(data);
 			    	$.each(result, function(i, field){
-			    		$("#resultstable").find("tbody:last").append("<tr><td>" + field.prod_id + "</td><td>" + field.name + "</td><td>" + field.description + "</td><td>" + field.cost + "</td></tr>");
-			    	});
+			    		$("#resultstable").find("tbody:last").append("<tr><td><a href=\"edititem.html\">" + field.prod_id + "</a></td><td>" + field.name + "</td><td>" + field.description + "</td><td>" + field.cost + "</td></tr>");
+      	});
 			    	// console.log(result);
 			    });
 		});
