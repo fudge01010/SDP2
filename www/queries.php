@@ -189,6 +189,46 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
             }
             break;
 
+        case 18:
+            // uncomment below if you need ID checking.
+            // if (!(isset($_GET['id'])) && !isset($_POST['id'])) {
+            //     echo "you need to supply a product ID to query.";
+            //     break;
+            // }
+
+            //use these to get your args from either post or get (not both - post overrules.)
+            if ($porg) {
+                //its post.
+                $id = $_POST['id'];
+                $fullname = urldecode($_POST['fullname']);
+                $contactno = urldecode($_POST['contactno']);
+                $postcode = urldecode($_POST['postcode']);
+            } else {
+                //its get
+                $id = $_GET['id'];
+                $fullname = urldecode($_GET['fullname']);
+                $contactno = urldecode($_GET['contactno']);
+                $postcode = urldecode($_GET['postcode']);
+            }
+            try {
+                //is the ID set? if so updating a product.
+                if (isset($_GET['id']) || isset($_POST['id'])) {
+                    //we do have an id.
+                    $sql = "INSERT INTO customers (cust_id, fullname, contactno, postcode) VALUES('$id', '$fullname', '$contactno', '$postcode') ON DUPLICATE KEY UPDATE fullname='$fullname', contactno='$contactno', postcode='$postcode'";
+                } else {
+                    //we don't have an ID, new product.
+                    $sql = "INSERT INTO customers (fullname, contactno, postcode) VALUES ('$fullname', '$contactno', '$postcode')";
+                }
+
+                //we have an SQL statement, execute it:
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            break;
+
         case 99:
             $ar = array('apple', 'orange', 'banana', 'strawberry');
             echo json_encode($ar); // ["apple","orange","banana","strawberry"]
