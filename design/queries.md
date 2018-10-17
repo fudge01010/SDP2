@@ -20,7 +20,7 @@ $qid= | what it does | \<arg\> |
 11 | gets all products (json) | `nil`
 12 | gets specific product (json) | `&id=[1005]`
 13 | gets all customers (json) | `nil`
-14 | gets specific customer (json) | `&id=[12]`
+14 | gets specific customer (json) | `&id=[1212]`
 15 | adds (updates) a new product | `(&id=[1055])&name=[panamax tablets]&cost=[1.49]&description=[this is a long description]`
 18 | adds (updates) a new customer | `(&id=[1234])&fullname=[matty natty]&contactno=[55555555]&postcode=[3122]`
   |  |   

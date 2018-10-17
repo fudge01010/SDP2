@@ -22,7 +22,7 @@
 			}, function(data, status){
 			    var result = $.parseJSON(data);
 			    	$.each(result, function(i, field){
-			    		$("#resultstable").find("tbody:last").append("<tr><td><a href=\"editcustomer.html\">" + field.cust_id + "</td><td>" + field.fullname + "</td><td>" + field.contactno + "</td><td>" + field.postcode + "</td></tr>");
+			    		$("#resultstable").find("tbody:last").append("<tr><td><a href=\"editcustomer.html?cid=" + field.cust_id + "\">" + field.cust_id + "</td><td>" + field.fullname + "</td><td>" + field.contactno + "</td><td>" + field.postcode + "</td></tr>");
 			    		console.log(field);
 			    	});
 			    	// console.log(result);

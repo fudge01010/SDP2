@@ -21,7 +21,7 @@
 			}, function(data, status){
 			    var result = $.parseJSON(data);
 			    	$.each(result, function(i, field){
-			    		$("#resultstable").find("tbody:last").append("<tr><td><a href=\"edititem.html\">" + field.prod_id + "</a></td><td>" + field.name + "</td><td>" + field.description + "</td><td>" + field.cost + "</td></tr>");
+			    		$("#resultstable").find("tbody:last").append("<tr><td><a href=\"edititem.html?pid=" + field.prod_id + "\">" + field.prod_id + "</a></td><td>" + field.name + "</td><td>" + field.description + "</td><td>" + field.cost + "</td></tr>");
       	});
 			    	// console.log(result);
 			    });
@@ -29,8 +29,8 @@
 	</script>
 </head>
 <body>
-	<button onclick="location.href='additem.html'" type="button">Add Item(s)</button>
-	<button onclick="location.href='edititem.html'" type="button">Edit Item(s)</button>
+	<button onclick="location.href='additem.html'" type="button">Add Item(s)</button> <strong>Click a product ID to edit it's details.</strong>
+	<!-- <button onclick="location.href='edititem.html'" type="button">Edit Item(s)</button> -->
 
 <!-- SET UP THE TABLE -->
 <table id="resultstable">

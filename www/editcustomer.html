@@ -9,15 +9,49 @@
 	<link rel="stylesheet" href="styles/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
+		function getUrlParam(name) {
+		    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    return (results && results[1]) || undefined;
+		}
+
 		$(document).ready(init);
 			// when the page has loaded and the doc is ready, this function is called
 
 		function init() {
-			var itemForm = document.getElementById("itemform");// link the variable to the HTML element
-			itemForm.onsubmit = saveItem;
+			var custForm = document.getElementById("custform");// link the variable to the HTML element
+			custForm.onsubmit = saveCust;
+
+			//pre-fill ID if it's passed
+			var url_id = getUrlParam('cid');
+			if (url_id > "") {
+			    document.getElementById("cust_id").value = url_id;
+			    document.getElementById("cust_id").disabled = true;
+
+			    //lookup item and pre-fill boxes.
+			    $.post("queries.php", //create a new POST request to this page
+				{
+					//this is your data you are POSTING to the query script!
+					qid: 14,
+					id: url_id//,
+					//name: "Bob Smith"
+				}, function(data, status){
+				    	var result = $.parseJSON(data);
+				    	$.each(result, function(i, field){
+				    		// $("div").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "<br />");
+				    		// $("#prod_id").value = field.prod_id;
+				    		document.getElementById("fullname").value = field.fullname;
+				    		document.getElementById("contactno").value = field.contactno; 
+				    		document.getElementById("postcode").value = field.postcode;
+				    		console.log(field);
+				    	});
+			    });
+
+			} else {
+			    // nothing to do
+			}
 		}
 
-		function saveItem()
+		function saveCust()
 		{
 			//get vars from page
 			var cust_id = document.getElementById("cust_id").value;
@@ -44,7 +78,7 @@
 
 <body>
 	<button onclick="location.href='customer.php'">Go Back</button>
-	<form>
+	<form id="custform">
 	<section id="addcustomer">
 	<h3>Customer Details</h3>
 		<p>Please enter the details needed for the customer.</p>

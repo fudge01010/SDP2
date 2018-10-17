@@ -9,12 +9,46 @@
 	<link rel="stylesheet" href="styles/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
+		function getUrlParam(name) {
+		    var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    return (results && results[1]) || undefined;
+		}
+
 		$(document).ready(init);
 			// when the page has loaded and the doc is ready, this function is called
 
 		function init() {
 			var itemForm = document.getElementById("itemform");// link the variable to the HTML element
 			itemForm.onsubmit = saveItem;
+
+			//pre-fill ID if it's passed
+			var url_id = getUrlParam('pid');
+			if (url_id > "") {
+			    document.getElementById("prod_id").value = url_id;
+			    document.getElementById("prod_id").disabled = true;
+
+			    //lookup item and pre-fill boxes.
+			    $.post("queries.php", //create a new POST request to this page
+				{
+					//this is your data you are POSTING to the query script!
+					qid: 12,
+					id: url_id//,
+					//name: "Bob Smith"
+				}, function(data, status){
+				    	var result = $.parseJSON(data);
+				    	$.each(result, function(i, field){
+				    		// $("div").append(field.prod_id + " " + field.name + " " + field.description + " " + field.cost + "<br />");
+				    		// $("#prod_id").value = field.prod_id;
+				    		document.getElementById("itemname").value = field.name;
+				    		document.getElementById("cost").value = field.cost; 
+				    		document.getElementById("description").value = field.description;
+				    		console.log(field);
+				    	});
+			    });
+
+			} else {
+			    // nothing to do
+			}
 		}
 
 		function saveItem()
@@ -51,15 +85,15 @@
 		</p>
 		<p>
 			<label for="itemname">Product Name: </label>
-			<input type="text" name="itemname" id="itemname" pattern="^[a-zA-Z ]{1,20}$" placeholder="eg. Bandaids" maxlength="20" required="required"/>
+			<input type="text" name="itemname" id="itemname" pattern="^[a-zA-Z ]{1,20}$" placeholder="eg. Bandaids" maxlength="64" size=64 required="required"/>
 		</p>
 		<p>
 			<label for="cost">Product Cost: </label>
-			<input type="text" name="cost" id="cost" pattern="(\d+\.\d{1,2})" placeholder="eg. 20.00" maxlength="20" required="required"/>
+			<input type="text" name="cost" id="cost" pattern="(\d+\.\d{1,2})" placeholder="eg. 20.00" maxlength="8" required="required"/>
 		</p>
 		<p>
-			<label for="description">Product Description: </label>
-			<input type="text" name="description" id="description" pattern="^[a-zA-Z ]{1,20}$" placeholder="eg. Adhesive bandages" maxlength="100" required="required"/>
+			<label for="description">Product Description: </label><br />
+			<textarea name="description" id="description" pattern="^[a-zA-Z ]{1,20}$" placeholder="eg. Adhesive bandages" maxlength="512" rows="4" cols="80" required="required"></textarea>
 		</p>
 		<input type= "submit" value="Submit"/>
    		<input type= "reset" value="Reset Form"/>
