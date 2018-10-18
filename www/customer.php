@@ -7,6 +7,8 @@
 	<meta name="author" content="group 4">
 	<link rel="stylesheet" href="styles/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="scripts/papaparse.min.js"></script>
+	<script src="scripts/FileSaver.js"></script>
 
 	<!-- jquery script -->
 	<script>
@@ -25,14 +27,21 @@
 			    		$("#resultstable").find("tbody:last").append("<tr><td><a href=\"editcustomer.html?cid=" + field.cust_id + "\">" + field.cust_id + "</td><td>" + field.fullname + "</td><td>" + field.contactno + "</td><td>" + field.postcode + "</td></tr>");
 			    		console.log(field);
 			    	});
-			    	// console.log(result);
+			    	toDL = Papa.unparse(result);
 			    });
+			$('#download').click( function() {
+			csvData = new Blob([toDL], {type: 'text/csv;charset=utf-8;'});
+			// var blob = new Blob(toDL, {type: "text/csv;charset=utf-8"});
+			saveAs (csvData, "data.csv");
+			});
 		});
 	</script>
 </head>
 <body>
 	<button onclick="location.href='addcustomer.html'" type="button">Add Customer</button>
-	<button onclick="location.href='editcustomer.html'" type="button">Edit Customer</button>
+	<!-- <button onclick="location.href='editcustomer.html'" type="button">Edit Customer</button> -->
+	<br />
+	<a href="#" id="download">Download this page's data as CSV</a>
 
 <!-- SET UP THE TABLE -->
 <table id="resultstable">

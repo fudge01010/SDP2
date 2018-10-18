@@ -80,7 +80,6 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
                 echo "Error: " . $e->getMessage();
             }
             break;
-            break;
 
         case 11:
             // uncomment below if you need ID checking.
@@ -239,6 +238,20 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
                 echo "Error: " . $e->getMessage();
             }
             break;
+
+        case 51:
+        try {
+                $sql = "SELECT* FROM invoices AS i INNER JOIN customers AS c ON i.cust_id = c.cust_id INNER JOIN inv_lines AS l ON i.inv_id = l.inv_id INNER JOIN products AS p on l.prod_id = p.prod_id GROUP BY l.inv_id WHERE i.date = '2018-10-05'";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(utf8ize($result));
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            
+        break;
 
         case 99:
             $ar = array('apple', 'orange', 'banana', 'strawberry');
