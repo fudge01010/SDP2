@@ -291,6 +291,19 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
             }
         break;
 
+        case 55:
+        try {
+                $sql = "SELECT l.prod_id AS 'productID', p.name,  COUNT(*) as count FROM inv_lines as l INNER JOIN products as p ON l.prod_id = p.prod_id GROUP BY l.prod_id HAVING COUNT > 5";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(utf8ize($result));
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+        break;
+
         case 99:
             $ar = array('apple', 'orange', 'banana', 'strawberry');
             echo json_encode($ar); // ["apple","orange","banana","strawberry"]
