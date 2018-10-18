@@ -23,7 +23,7 @@
 			}, function(data, status){
 			    var result = $.parseJSON(data);
 			    	$.each(result, function(i, field){
-			    		$("#resultstable").find("tbody:last").append("<tr><td>" + field.ProductID + "</td><td>" + field.count + "</td></tr>");
+			    		$("#resultstable").find("tbody:last").append("<tr><td>" + field.productID + "</td><td>" + field.count + "</td></tr>");
       	});
 			    	// console.log(result);
 			    toDL = Papa.unparse(result);

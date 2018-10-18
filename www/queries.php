@@ -280,7 +280,7 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
 
         case 54:
         try {
-                $sql = "SELECT l.prod_id AS 'Product ID', COUNT(*) as count FROM inv_lines as l INNER JOIN products as p ON l.prod_id = p.prod_id GROUP BY l.prod_id HAVING COUNT > 1";
+                $sql = "SELECT l.prod_id AS 'productID', COUNT(*) as count FROM inv_lines as l INNER JOIN products as p ON l.prod_id = p.prod_id GROUP BY l.prod_id HAVING COUNT > 1";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
 
