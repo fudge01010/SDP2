@@ -38,8 +38,8 @@
 	</script>
 </head>
 <body>
-		<button onclick="location.href='addinvoices.html'" type="button">Add Invoice</button>
-		<button onclick="location.href='invoiceform.html'" type="button">Edit Invoice</button>
+		<button onclick="location.href='invoiceform.php'" type="button">Add Invoice</button>
+		<button onclick="location.href='addinvoices.html'" type="button">Edit Invoice</button>
 	<a href="#" id="download">Download this page's data as CSV</a>
 
 <!-- SET UP THE TABLE -->
