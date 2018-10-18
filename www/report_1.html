@@ -24,12 +24,19 @@
 			    		$("#resultstable").find("tbody:last").append("<tr><td>" + field.inv_id + "</td><td>" + field.fullname + "</td><td>" + field.contactno + "</td><td>" + field.postcode + "</td><td>" + field.line_id + "</td><td>" + field.prod_id + "</td><td>" + field.name + "</td><td>" + field.description + "</td><td>" + field.cost + "</td><td>" + field.qty + "</td></tr>");
       	});
 			    	// console.log(result);
+			    toDL = Papa.unparse(result);
 			    });
+			$('#download').click( function() {
+			csvData = new Blob([toDL], {type: 'text/csv;charset=utf-8;'});
+			// var blob = new Blob(toDL, {type: "text/csv;charset=utf-8"});
+			saveAs (csvData, "data.csv");
+			});
 		});
 	</script>
 </head>
 <body>
-	<button onclick="location.href='additem.html'" type="button">Add Item(s)</button> <strong>Click a product ID to edit it's details.</strong>
+	<br />
+	<a href="#" id="download">Download this page's data as CSV</a>
 	<!-- <button onclick="location.href='edititem.html'" type="button">Edit Item(s)</button> -->
 
 <!-- SET UP THE TABLE -->
