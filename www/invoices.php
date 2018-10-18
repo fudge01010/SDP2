@@ -31,7 +31,7 @@
 </head>
 <body>
 		<button onclick="location.href='addinvoices.html'" type="button">Add Invoice</button>
-		<button onclick="location.href='editinvoices.html'" type="button">Edit Invoice</button>
+		<button onclick="location.href='invoiceform.html'" type="button">Edit Invoice</button>
 
 <!-- SET UP THE TABLE -->
 <table id="resultstable">
