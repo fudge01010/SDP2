@@ -241,7 +241,7 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
 
         case 51:
         try {
-                $sql = "SELECT* FROM invoices AS i INNER JOIN customers AS c ON i.cust_id = c.cust_id INNER JOIN inv_lines AS l ON i.inv_id = l.inv_id INNER JOIN products AS p on l.prod_id = p.prod_id GROUP BY l.inv_id WHERE i.date = '2018-10-05'";
+                $sql = "SELECT i.inv_id, i.total, c.fullname, c.contactno, c.postcode, l.line_id, l.prod_id, p.name, p.description, p.cost, l.qty FROM invoices AS i INNER JOIN customers AS c ON i.cust_id = c.cust_id INNER JOIN inv_lines AS l ON i.inv_id = l.inv_id INNER JOIN products AS p on l.prod_id = p.prod_id WHERE i.date = '2018-10-14'";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
 
@@ -250,7 +250,32 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
             } catch(PDOException $e) {
                 echo "Error: " . $e->getMessage();
             }
-            
+        break;
+
+        case 52:
+        try {
+                $sql = "SELECT* FROM invoices AS i INNER JOIN customers AS c ON i.cust_id = c.cust_id INNER JOIN inv_lines AS l ON i.inv_id = l.inv_id INNER JOIN products AS p on l.prod_id = p.prod_id WHERE i.date BETWEEN '2018-10-08' AND '2018-10-14'";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(utf8ize($result));
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+        break;
+
+        case 53:
+        try {
+                $sql = "SELECT* FROM invoices AS i INNER JOIN customers AS c ON i.cust_id = c.cust_id INNER JOIN inv_lines AS l ON i.inv_id = l.inv_id INNER JOIN products AS p on l.prod_id = p.prod_id WHERE i.date BETWEEN '2018-10-01' AND '2018-10-14'";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(utf8ize($result));
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
         break;
 
         case 99:
