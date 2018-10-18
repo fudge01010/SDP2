@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>Inventory </title>
+	<meta charset="utf-8">
+	<meta name="description" content="Web development">
+	<meta name="keywords" content="HTML, CSS">
+	<meta name="author" content="group 4">
+	<link rel="stylesheet" href="styles/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- jquery script -->
+	<script>
+		$(document).ready(function(){
+			// when the page has loaded and the doc is ready, this function is called
+			$.post("queries.php", //create a new POST request to this page
+			{
+				//this is your data you are POSTING to the query script!
+				qid: 52
+				// id: 1010//
+				//name: "Bob Smith"
+			}, function(data, status){
+			    var result = $.parseJSON(data);
+			    	$.each(result, function(i, field){
+			    		$("#resultstable").find("tbody:last").append("<tr><td>" + field.inv_id + "</td><td>" + field.fullname + "</td><td>" + field.contactno + "</td><td>" + field.postcode + "</td><td>" + field.line_id + "</td><td>" + field.prod_id + "</td><td>" + field.name + "</td><td>" + field.description + "</td><td>" + field.cost + "</td><td>" + field.qty + "</td></tr>");
+      	});
+			    	// console.log(result);
+			    toDL = Papa.unparse(result);
+			    });
+			$('#download').click( function() {
+			csvData = new Blob([toDL], {type: 'text/csv;charset=utf-8;'});
+			// var blob = new Blob(toDL, {type: "text/csv;charset=utf-8"});
+			saveAs (csvData, "data.csv");
+			});
+		});
+	</script>
+</head>
+<body>
+	<br />
+	<a href="#" id="download">Download this page's data as CSV</a>
+	<!-- <button onclick="location.href='edititem.html'" type="button">Edit Item(s)</button> -->
+
+<!-- SET UP THE TABLE -->
+<table id="resultstable">
+	<thead>
+		<tr><th>Invoice ID</th><th>Total</th><th>Full Name</th><th>Contact No.</th><th>Postcode</th><th>Line ID</th><th>Product ID</th><th>Product Name</th><th>Product Description</th><th>Product Cost</th><th>Qty</th></tr>
+	</thead>
+	<tbody>
+	</tbody>
+	<!-- DATA ALL PRINTED, END THE TABLE NEATLY -->
+</table>
+</body>
+
+</html>
