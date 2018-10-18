@@ -69,6 +69,17 @@ if (!isset($_GET['qid']) && !isset($_POST['qid'])) {
 
         case 7:
             //print all invoices
+            try {
+                $sql = "SELECT * , (SELECT COUNT(*) FROM inv_lines WHERE inv_lines.inv_id = invoices.inv_id) AS number_of_lines FROM invoices";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(utf8ize($result));
+            } catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+            break;
             break;
 
         case 11:
